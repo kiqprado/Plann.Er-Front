@@ -8,10 +8,12 @@ const buttonVariants =  tv({
       primary: "bg-lime-300 text-lime-950 hover:bg-lime-400",
       secondary: "text-zinc-200 bg-zinc-800 hover:bg-zinc-700",
       tertiary: "flex-1 text-left",
+      specialCase: "text-lg text-zinc-400"
     },
     size: {
       default: "px-5 py-2",
-      full: "w-full py-2"
+      full: "w-full py-2",
+      specialCase: "py-2 max-w-44 flex-1 justify-start"
     }
   },
 

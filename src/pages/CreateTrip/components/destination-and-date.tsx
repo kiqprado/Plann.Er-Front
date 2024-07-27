@@ -1,7 +1,14 @@
-import { MapPin, Calendar, ArrowRight, Settings2 } from 'lucide-react'
+import { useState } from 'react'
+import { DateRange, DayPicker } from 'react-day-picker'
+import "react-day-picker/dist/style.css"
+import { format } from 'date-fns'
+
+import { MapPin, Calendar, ArrowRight, Settings2, X } from 'lucide-react'
 
 import { Button } from '../../../components/button'
+import { ButtonIcon } from '../../../components/button-icon'
 import { Input } from '../../../components/input'
+
 
 interface DestinationAndDateProps {
   hasGuestsInput: boolean
@@ -14,6 +21,21 @@ export function DestinationAndDate( {
   closeGuestsInput,
   openGuestsInput,
 }: DestinationAndDateProps) {
+
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
+  const [startsAndFinishes, setStartsAndFinishes] = useState<DateRange | undefined>()
+
+  function openDatePicker() {
+    return setIsDatePickerOpen(true)
+  }
+
+  function closeDatePicker() {
+    return setIsDatePickerOpen(false)
+  }
+
+  const displayedDate = startsAndFinishes && startsAndFinishes.from && startsAndFinishes.to
+    ? format(startsAndFinishes.from, 'd').concat(' até ').concat(format(startsAndFinishes.to, "d' de 'LLL"))
+    : null
   
   return (
     <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
@@ -25,13 +47,41 @@ export function DestinationAndDate( {
       />
       
 
-      <Input
-        placeholder="Quando?"
-        type="text"
+      <Button
         disabled={hasGuestsInput}
-        icon={<Calendar/>}
-        variant="tertiary"
-      />
+        variant="specialCase"
+        size="specialCase"
+        onClick={openDatePicker}
+      >
+        <Calendar/>
+        { displayedDate || 'Quando?' }
+      </Button>
+
+      {
+        isDatePickerOpen && (
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
+            <div className="rounded-xl py-5 px-6 bg-zinc-900 shadow-shape space-y-5">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold">Selecione a data</h2>
+                  <ButtonIcon
+                    type="button"
+                    onClick={closeDatePicker}
+                  >
+                    <X/>
+                  </ButtonIcon>
+                </div>
+
+                <DayPicker 
+                  mode="range"
+                  selected={startsAndFinishes}
+                  onSelect={setStartsAndFinishes}
+                />
+              </div>
+            </div>
+          </div>
+        )
+      }
 
       <div className="w-px h-6 bg-zinc-800"/>
 
