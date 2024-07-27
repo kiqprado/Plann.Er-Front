@@ -34,7 +34,7 @@ export function DestinationAndDate( {
   }
 
   const displayedDate = startsAndFinishes && startsAndFinishes.from && startsAndFinishes.to
-    ? format(startsAndFinishes.from, 'd').concat(' até ').concat(format(startsAndFinishes.to, "d' de 'LLL"))
+    ? format(startsAndFinishes.from, "d' de 'LLL").concat(' até ').concat(format(startsAndFinishes.to, "d' de 'LLL"))
     : null
   
   return (
@@ -53,7 +53,7 @@ export function DestinationAndDate( {
         size="specialCase"
         onClick={openDatePicker}
       >
-        <Calendar/>
+        <Calendar className="size-5"/>
         { displayedDate || 'Quando?' }
       </Button>
 

@@ -13,7 +13,7 @@ const buttonVariants =  tv({
     size: {
       default: "px-5 py-2",
       full: "w-full py-2",
-      specialCase: "py-2 max-w-44 flex-1 justify-start"
+      specialCase: "py-2 max-w-56 min-w-40 justify-start"
     }
   },
 
