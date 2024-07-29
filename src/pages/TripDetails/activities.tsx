@@ -20,12 +20,11 @@ export function Activities() {
   const [ activities, setActivities ] = useState<Activity[]>([])
 
   useEffect(() => {
-    api.get(`/trips/${tripId}/activities`).then(response => setActivities(response.data.activities) )
+    api.get(`/trips/${tripId}/activities`).then(response => setActivities(response.data.activities))
   }, [tripId])
 
   return(
     <div className="space-y-8">
-
       {activities.map(activity => {
         return(
           <div key={activity.date} className="space-y-2.5">
@@ -54,7 +53,6 @@ export function Activities() {
           </div>
         )
       })}
-      
-      </div>
+    </div>
   )
 }

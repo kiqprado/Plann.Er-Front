@@ -1,4 +1,5 @@
 import { FormEvent } from 'react'
+
 import { X, AtSign, Plus } from 'lucide-react'
 
 import { Button } from '../../components/button'
@@ -10,7 +11,6 @@ interface InviteGuestProps {
   emailsToInvite: string[]
   addNewEmailToInvite: (event: FormEvent<HTMLFormElement>) => void
   removeEmailsFromInvites: (email: string) => void
-
 }
 
 export function InviteGuest({
@@ -19,7 +19,6 @@ export function InviteGuest({
   emailsToInvite,
   removeEmailsFromInvites
 }: InviteGuestProps) {
-
 
   return(
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">

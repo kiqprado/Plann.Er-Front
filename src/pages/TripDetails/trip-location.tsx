@@ -9,7 +9,9 @@ import { Button } from '../../components/button'
 
 interface TripLocationProps {
   handleHomeNavigate: () => void
+}
 
+interface TripDetails {
   id: string
   destination: string
   starts_at: string
@@ -19,7 +21,7 @@ interface TripLocationProps {
 
 export function TripLocation({ handleHomeNavigate }: TripLocationProps) {
   const { tripId } =  useParams()
-  const [ trip, setTrip ] = useState<TripLocationProps | undefined>()
+  const [ trip, setTrip ] = useState<TripDetails | undefined>()
 
   const displayedDate = trip
     ? format(trip.starts_at, "d' de 'LLL").concat(' a ').concat(format(trip.ends_at, "d' de 'LLL"))

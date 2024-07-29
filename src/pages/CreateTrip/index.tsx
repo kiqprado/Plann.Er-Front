@@ -19,7 +19,7 @@ export function CreateTrip() {
   const [ guestsModalOpen, setGuestsModalOpen ] = useState(false)
 
   const [ emailsToInvite, setEmailsToInvite ] = useState([
-    'ainzedamanga@mangadoze.com'
+    'example@example.com'
   ])
 
   const [ confirmTripModal, setConfirmTripModal ] = useState(false)
@@ -144,10 +144,10 @@ export function CreateTrip() {
       {
         guestsModalOpen && (
           <InviteGuest
-          addNewEmailToInvite={addNewEmailToInvite}
-          closeGuestsModal={closeGuestsModal}
-          emailsToInvite={emailsToInvite}
-          removeEmailsFromInvites={removeEmailsFromInvites}
+            addNewEmailToInvite={addNewEmailToInvite}
+            closeGuestsModal={closeGuestsModal}
+            emailsToInvite={emailsToInvite}
+            removeEmailsFromInvites={removeEmailsFromInvites}
           />
         )
       }
@@ -155,10 +155,10 @@ export function CreateTrip() {
       {
         confirmTripModal && (
           <ConfirmTrip
-          closeConfirmTripModal={closeConfirmTripModal}
-          createTrip={createTrip}
-          setOwnerName={setOwnerName}
-          setOwnerEmail={setOwnerEmail}
+            closeConfirmTripModal={closeConfirmTripModal}
+            createTrip={createTrip}
+            setOwnerName={setOwnerName}
+            setOwnerEmail={setOwnerEmail}
           />
         )
       }
