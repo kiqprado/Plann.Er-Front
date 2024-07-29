@@ -1,3 +1,7 @@
+import { useParams } from 'react-router-dom'
+import { FormEvent } from 'react'
+import { api } from '../../lib/axios'
+
 import { X, Tag, Link2 } from 'lucide-react'
 
 import { ButtonIcon } from '../../components/button-icon'
@@ -9,6 +13,24 @@ interface RegisterLinksProps {
 }
 
 export function RegisterLinks({closeNewImportantLink}: RegisterLinksProps) {
+  const { tripId } = useParams()
+
+  async function registerLinks(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const data = new FormData(event.currentTarget)
+
+    const title = data.get('title')?.toString()
+    const url = data.get('url')?.toString()
+
+    await api.post(`/trips/${tripId}/links`, {
+      title,
+      url
+    })
+
+    window.document.location.reload()
+  }
+
   return(
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
       <div className="w-[640px] rounded-xl py-5 px-6 bg-zinc-900 shadow-shape space-y-5">
@@ -30,7 +52,8 @@ export function RegisterLinks({closeNewImportantLink}: RegisterLinksProps) {
 
         <form 
           action=""
-          className="space-y-3" 
+          className="space-y-3"
+          onSubmit={registerLinks}
         >
 
           <div className="p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">

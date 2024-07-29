@@ -29,7 +29,7 @@ export function CreateActivity({closeCreateActivity}: CreateCalendarProps) {
       occurs_at
     })
 
-    closeCreateActivity()
+    window.document.location.reload()
   }
   
   return(
