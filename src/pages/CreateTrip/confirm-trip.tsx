@@ -8,9 +8,17 @@ import { ButtonIcon } from '../../components/button-icon'
 interface ConfirmTripProps {
   closeConfirmTripModal: () => void
   createTrip: (event: FormEvent<HTMLFormElement>) => void
+
+  setOwnerName: (ownerName: string) => void
+  setOwnerEmail: (ownerEmail: string) => void
 }
 
-export function ConfirmTrip({closeConfirmTripModal, createTrip }: ConfirmTripProps) {
+export function ConfirmTrip({
+  closeConfirmTripModal, 
+  createTrip,
+  setOwnerName,
+  setOwnerEmail,
+ }: ConfirmTripProps) {
   return(
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
       <div className="w-[640px] rounded-xl py-5 px-6 bg-zinc-900 shadow-shape space-y-5">
@@ -42,6 +50,7 @@ export function ConfirmTrip({closeConfirmTripModal, createTrip }: ConfirmTripPro
           placeholder="Seu nome completo"
           icon={<User/>}
           variant="secondary"
+          onChange={event => setOwnerName(event.target.value)}
           />
          
         <Input
@@ -50,6 +59,7 @@ export function ConfirmTrip({closeConfirmTripModal, createTrip }: ConfirmTripPro
           placeholder="Seu e-mail pessoal"
           icon={<Mail/>}
           variant="secondary"
+          onChange={event => setOwnerEmail(event.target.value)}
         />
 
         <Button 

@@ -14,16 +14,22 @@ interface DestinationAndDateProps {
   hasGuestsInput: boolean
   closeGuestsInput: () => void
   openGuestsInput: () => void
+
+  setDestination: (destination: string) => void
+  startsAndFinishes: DateRange | undefined
+  setStartsAndFinishes: (dates: DateRange | undefined) => void
 }
 
 export function DestinationAndDate( {
   hasGuestsInput,
   closeGuestsInput,
   openGuestsInput,
+  setDestination,
+  startsAndFinishes,
+  setStartsAndFinishes,
 }: DestinationAndDateProps) {
 
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
-  const [startsAndFinishes, setStartsAndFinishes] = useState<DateRange | undefined>()
 
   function openDatePicker() {
     return setIsDatePickerOpen(true)
@@ -44,6 +50,7 @@ export function DestinationAndDate( {
         type="text"
         disabled={hasGuestsInput}
         icon={<MapPin/>}
+        onChange={event => setDestination(event.target.value)}
       />
       
 

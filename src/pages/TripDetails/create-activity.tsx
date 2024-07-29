@@ -1,3 +1,7 @@
+import { FormEvent } from 'react'
+import { api } from '../../lib/axios'
+import { useParams } from 'react-router-dom'
+
 import { Calendar, Tag, X } from 'lucide-react'
 
 import { Button } from '../../components/button'
@@ -9,6 +13,24 @@ interface CreateCalendarProps {
 }
 
 export function CreateActivity({closeCreateActivity}: CreateCalendarProps) {
+
+  const { tripId } = useParams()
+
+  async function createActivity(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const data = new FormData(event.currentTarget)
+
+    const activity = data.get('activity')?.toString()
+    const occurs_at = data.get('occurs_at')?.toString()
+
+    await api.post(`/trips/${tripId}/activities`, {
+      title: activity,
+      occurs_at
+    })
+
+    closeCreateActivity()
+  }
   
   return(
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
@@ -31,7 +53,8 @@ export function CreateActivity({closeCreateActivity}: CreateCalendarProps) {
 
         <form 
           action=""
-          className="space-y-3" 
+          className="space-y-3"
+          onSubmit={createActivity} 
         >
 
           <div className="p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
